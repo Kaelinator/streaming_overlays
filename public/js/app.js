@@ -95,23 +95,6 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -141,26 +124,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     createAccount: function createAccount(event) {
+      var _this = this;
+
       event.preventDefault();
-      console.log("Creating account");
-      console.log("user", this.user);
+      var body = JSON.stringify({
+        name: this.user.name,
+        email: this.user.email,
+        password: this.user.password,
+        password_confirmation: this.user.passwordConfirmation,
+        _token: this.csrfToken
+      });
       fetch("/register", {
         method: "POST",
-        body: JSON.stringify(_objectSpread({}, this.user, {
-          _token: this.csrfToken
-        })),
+        body: body,
         headers: {
           "Content-Type": "application/json"
-        },
-        redirect: 'follow'
+        }
       }).then(function (response) {
-        console.log(response.status);
+        console.log(response);
 
         if (response.status < 200 || response.status > 299) {
           var error = new Error(response.status);
           error.response = response;
           throw error;
         }
+
+        _this.$router.push("/");
       })["catch"](function (error) {
         var messages = {
           419: "you dun wrong",
@@ -177,7 +166,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: "Kael".concat(Date.now()),
         email: "example".concat(Date.now(), "@gmail.com"),
         password: "Password",
-        password_confirmation: "Password"
+        passwordConfirmation: "Password"
       },
       csrfToken: document.querySelector('meta[name="csrf-token"]').content
     };
@@ -1713,7 +1702,7 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _c("label", { attrs: { for: "password-confirm" } }, [
+        _c("label", { attrs: { for: "password-confirmation" } }, [
           _vm._v("Confirm password:")
         ]),
         _vm._v(" "),
@@ -1722,22 +1711,22 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.user.password_confirmation,
-              expression: "user.password_confirmation"
+              value: _vm.user.passwordConfirmation,
+              expression: "user.passwordConfirmation"
             }
           ],
           attrs: {
             type: "password",
-            id: "password-confirm",
-            name: "password_confirmation"
+            id: "password-confirmation",
+            name: "passwordConfirmation"
           },
-          domProps: { value: _vm.user.password_confirmation },
+          domProps: { value: _vm.user.passwordConfirmation },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.user, "password_confirmation", $event.target.value)
+              _vm.$set(_vm.user, "passwordConfirmation", $event.target.value)
             }
           }
         }),

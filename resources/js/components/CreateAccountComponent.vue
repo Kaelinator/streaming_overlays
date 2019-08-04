@@ -11,30 +11,17 @@
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" v-model="user.password" />
 
-      <label for="password-confirm">Confirm password:</label>
+      <label for="password-confirmation">Confirm password:</label>
       <input
         type="password"
-        id="password-confirm"
-        name="password_confirmation"
-        v-model="user.password_confirmation"
+        id="password-confirmation"
+        name="passwordConfirmation"
+        v-model="user.passwordConfirmation"
       />
 
       <button type="submit">Create Account</button>
     </form>
   </section>
-  <!-- <form method="POST">
-    <section>
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" />
-    </section>
-
-    <section>
-      <label for="password">Password:</label>
-      <input type="text" id="password" name="password" />
-    </section>
-
-    <button type="submit">Login</button>
-  </form>-->
 </template>
 
 <script>
@@ -43,24 +30,30 @@ export default {
     createAccount(event) {
       event.preventDefault();
 
-      console.log("Creating account");
-      console.log("user", this.user);
+      const body = JSON.stringify({
+        name: this.user.name,
+        email: this.user.email,
+        password: this.user.password,
+        password_confirmation: this.user.passwordConfirmation,
+        _token: this.csrfToken
+      })
 
       fetch("/register", {
         method: "POST",
-        body: JSON.stringify({ ...this.user, _token: this.csrfToken }),
+        body,
         headers: {
           "Content-Type": "application/json"
-        },
-        redirect: 'follow'
+        }
       })
         .then(response => {
-          console.log(response.status);
+          console.log(response);
           if (response.status < 200 || response.status > 299) {
             const error = new Error(response.status);
             error.response = response;
             throw error;
           }
+
+          this.$router.push("/");
         })
         .catch(error => {
           const messages = {
@@ -79,7 +72,7 @@ export default {
         name: `Kael${Date.now()}`,
         email: `example${Date.now()}@gmail.com`,
         password: "Password",
-        password_confirmation: "Password"
+        passwordConfirmation: "Password"
       },
       csrfToken: document.querySelector('meta[name="csrf-token"]').content
     };
