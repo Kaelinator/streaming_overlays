@@ -15,8 +15,8 @@
       <input
         type="password"
         id="password-confirm"
-        name="password_confirm"
-        v-model="user.password_confirm"
+        name="password_confirmation"
+        v-model="user.password_confirmation"
       />
 
       <button type="submit">Create Account</button>
@@ -48,11 +48,11 @@ export default {
 
       fetch("/register", {
         method: "POST",
-        body: JSON.stringify(this.user),
+        body: JSON.stringify({ ...this.user, _token: this.csrfToken }),
         headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-TOKEN": this.csrfToken
-        }
+          "Content-Type": "application/json"
+        },
+        redirect: 'follow'
       })
         .then(response => {
           console.log(response.status);
@@ -79,7 +79,7 @@ export default {
         name: `Kael${Date.now()}`,
         email: `example${Date.now()}@gmail.com`,
         password: "Password",
-        password_confirm: "Password"
+        password_confirmation: "Password"
       },
       csrfToken: document.querySelector('meta[name="csrf-token"]').content
     };

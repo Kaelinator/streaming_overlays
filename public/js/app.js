@@ -95,6 +95,10 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -142,11 +146,13 @@ __webpack_require__.r(__webpack_exports__);
       console.log("user", this.user);
       fetch("/register", {
         method: "POST",
-        body: JSON.stringify(this.user),
+        body: JSON.stringify(_objectSpread({}, this.user, {
+          _token: this.csrfToken
+        })),
         headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-TOKEN": this.csrfToken
-        }
+          "Content-Type": "application/json"
+        },
+        redirect: 'follow'
       }).then(function (response) {
         console.log(response.status);
 
@@ -171,7 +177,7 @@ __webpack_require__.r(__webpack_exports__);
         name: "Kael".concat(Date.now()),
         email: "example".concat(Date.now(), "@gmail.com"),
         password: "Password",
-        password_confirm: "Password"
+        password_confirmation: "Password"
       },
       csrfToken: document.querySelector('meta[name="csrf-token"]').content
     };
@@ -368,7 +374,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-3c6f5497] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\nform[data-v-3c6f5497] {\n  display: grid;\n  grid-template-columns: 1fr 3fr;\n  grid-gap: 1rem;\n  width: 50%;\n}\nh1[data-v-3c6f5497] {\n  margin: 0.5rem;\n}\nbutton[data-v-3c6f5497] {\n  grid-column: 1 / 3;\n  padding: 1rem;\n  justify-self: end;\n  background-color: #b2cefe;\n}\n\n/* form {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\nsection {\n  width: \n} */\n", ""]);
+exports.push([module.i, "\nsection[data-v-3c6f5497] {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n          align-items: center;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n          flex-direction: column;\n}\nform[data-v-3c6f5497] {\r\n  display: grid;\r\n  grid-template-columns: 1fr 3fr;\r\n  grid-gap: 1rem;\r\n  width: 50%;\n}\nh1[data-v-3c6f5497] {\r\n  margin: 0.5rem;\n}\nbutton[data-v-3c6f5497] {\r\n  grid-column: 1 / 3;\r\n  padding: 1rem;\r\n  justify-self: end;\r\n  background-color: #b2cefe;\n}\r\n\r\n/* form {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-between;\r\n}\r\nsection {\r\n  width: \r\n} */\r\n", ""]);
 
 // exports
 
@@ -387,7 +393,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-4d2414bf] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\nform[data-v-4d2414bf] {\n  display: grid;\n  grid-template-columns: 1fr 3fr;\n  grid-gap: 1rem;\n  width: 50%;\n}\nh1[data-v-4d2414bf] {\n  margin: 0.5rem;\n}\nbutton[data-v-4d2414bf] {\n  grid-column: 1 / 3;\n  padding: 1rem;\n  justify-self: end;\n}\n\n/* form {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\nsection {\n  width: \n} */\n", ""]);
+exports.push([module.i, "\nsection[data-v-4d2414bf] {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n          align-items: center;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n          flex-direction: column;\n}\nform[data-v-4d2414bf] {\r\n  display: grid;\r\n  grid-template-columns: 1fr 3fr;\r\n  grid-gap: 1rem;\r\n  width: 50%;\n}\nh1[data-v-4d2414bf] {\r\n  margin: 0.5rem;\n}\nbutton[data-v-4d2414bf] {\r\n  grid-column: 1 / 3;\r\n  padding: 1rem;\r\n  justify-self: end;\n}\r\n\r\n/* form {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-between;\r\n}\r\nsection {\r\n  width: \r\n} */\r\n", ""]);
 
 // exports
 
@@ -406,7 +412,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-152c8205] {\n  display: -webkit-box;\n  display: flex;\n  flex-wrap: nowrap;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  padding: 1rem;\n  background: #b2cefe;\n}\nh1[data-v-152c8205] {\n  color: black;\n}\n.link-container > a[data-v-152c8205] {\n  margin: 0 20px;\n}\n.link-container > a[data-v-152c8205]:hover {\n  color: red;\n}\n", ""]);
+exports.push([module.i, "\nsection[data-v-152c8205] {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  flex-wrap: nowrap;\r\n  -webkit-box-pack: justify;\r\n          justify-content: space-between;\r\n  padding: 1rem;\r\n  background: #b2cefe;\n}\nh1[data-v-152c8205] {\r\n  color: black;\n}\n.link-container > a[data-v-152c8205] {\r\n  margin: 0 20px;\n}\n.link-container > a[data-v-152c8205]:hover {\r\n  color: red;\n}\r\n", ""]);
 
 // exports
 
@@ -425,7 +431,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nmain[data-v-6957ca8e] {\n  display: grid;\n  grid-template-columns: 1fr 2fr 1fr;\n}\n.container[data-v-6957ca8e] {\n  grid-column: 2 / 3;\n}\narticle[data-v-6957ca8e] {\n  margin: 10px 0;\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  grid-template-areas:\n    \"titl  titl\"\n    \"desc  link\"\n    \"sched sched\";\n}\n.title[data-v-6957ca8e] {\n  grid-area: titl;\n  font: 1.5em sans-serif;\n}\n.link-wrapper[data-v-6957ca8e] {\n  grid-area: link;\n}\n.description[data-v-6957ca8e] {\n  grid-area: desc;\n}\n.schedule[data-v-6957ca8e] {\n  grid-area: sched;\n}\nh1[data-v-6957ca8e] {\n  font: 2em sans-serif;\n}\n", ""]);
+exports.push([module.i, "\nmain[data-v-6957ca8e] {\r\n  display: grid;\r\n  grid-template-columns: 1fr 2fr 1fr;\n}\n.container[data-v-6957ca8e] {\r\n  grid-column: 2 / 3;\n}\narticle[data-v-6957ca8e] {\r\n  margin: 10px 0;\r\n  display: grid;\r\n  grid-template-columns: 1fr 1fr;\r\n  grid-template-areas:\r\n    \"titl  titl\"\r\n    \"desc  link\"\r\n    \"sched sched\";\n}\n.title[data-v-6957ca8e] {\r\n  grid-area: titl;\r\n  font: 1.5em sans-serif;\n}\n.link-wrapper[data-v-6957ca8e] {\r\n  grid-area: link;\n}\n.description[data-v-6957ca8e] {\r\n  grid-area: desc;\n}\n.schedule[data-v-6957ca8e] {\r\n  grid-area: sched;\n}\nh1[data-v-6957ca8e] {\r\n  font: 2em sans-serif;\n}\r\n", ""]);
 
 // exports
 
@@ -1716,22 +1722,22 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.user.password_confirm,
-              expression: "user.password_confirm"
+              value: _vm.user.password_confirmation,
+              expression: "user.password_confirmation"
             }
           ],
           attrs: {
             type: "password",
             id: "password-confirm",
-            name: "password_confirm"
+            name: "password_confirmation"
           },
-          domProps: { value: _vm.user.password_confirm },
+          domProps: { value: _vm.user.password_confirmation },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.user, "password_confirm", $event.target.value)
+              _vm.$set(_vm.user, "password_confirmation", $event.target.value)
             }
           }
         }),
@@ -17228,14 +17234,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************************!*\
   !*** ./resources/js/components/StandardScheduleComponent.vue ***!
   \***************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _StandardScheduleComponent_vue_vue_type_template_id_6957ca8e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StandardScheduleComponent.vue?vue&type=template&id=6957ca8e&scoped=true& */ "./resources/js/components/StandardScheduleComponent.vue?vue&type=template&id=6957ca8e&scoped=true&");
 /* harmony import */ var _StandardScheduleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StandardScheduleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/StandardScheduleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _StandardScheduleComponent_vue_vue_type_style_index_0_id_6957ca8e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./StandardScheduleComponent.vue?vue&type=style&index=0&id=6957ca8e&scoped=true&lang=css& */ "./resources/js/components/StandardScheduleComponent.vue?vue&type=style&index=0&id=6957ca8e&scoped=true&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _StandardScheduleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _StandardScheduleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _StandardScheduleComponent_vue_vue_type_style_index_0_id_6957ca8e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./StandardScheduleComponent.vue?vue&type=style&index=0&id=6957ca8e&scoped=true&lang=css& */ "./resources/js/components/StandardScheduleComponent.vue?vue&type=style&index=0&id=6957ca8e&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -17267,7 +17274,7 @@ component.options.__file = "resources/js/components/StandardScheduleComponent.vu
 /*!****************************************************************************************!*\
   !*** ./resources/js/components/StandardScheduleComponent.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17329,8 +17336,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/bpatton/code/brooks-builds/streaming_overlays/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/bpatton/code/brooks-builds/streaming_overlays/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Code\Projects\streaming_overlays\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Code\Projects\streaming_overlays\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
